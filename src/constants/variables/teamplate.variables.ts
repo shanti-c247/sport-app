@@ -1,0 +1,1 @@
+export const TEAMPLATE_MODULE_SWAGGER_OPERATIONS_PATH = 'src/docs/template/operations.ts';

@@ -1,0 +1,1 @@
+export const EVENT_MODULE_SWAGGER_OPERATIONS_PATH = 'src/docs/event/operations.ts';
