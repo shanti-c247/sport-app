@@ -43,10 +43,10 @@ node_modules/
 jspm_packages/
 
 # Uploads directories
-!public/
-public/*
-uploads/*
-uploads/
+# !public/
+# public/*
+# uploads/*
+# uploads/
 
 # Uploads directories
 dist/
