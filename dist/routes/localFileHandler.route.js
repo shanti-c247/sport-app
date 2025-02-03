@@ -8,10 +8,10 @@ const _controllers_1 = require("@controllers");
 const _middlewares_1 = require("@middlewares");
 const router = express_1.default.Router();
 // Apply the authentication middleware to all routes in this group
-router.get('/:fileId', _middlewares_1.authenticate, _controllers_1.localFileHandlerController.fetchLocalFile);
+router.get('/:fileId', _controllers_1.localFileHandlerController.fetchLocalFile);
 router.post('/', _middlewares_1.authenticate, _middlewares_1.uploadFileLocal, _controllers_1.localFileHandlerController.localFileUpload);
 router.patch('/:fileId', _middlewares_1.authenticate, _middlewares_1.uploadFileLocal, _controllers_1.localFileHandlerController.localFileUploadUpdate);
 router.delete('/:fileId', _middlewares_1.authenticate, _controllers_1.localFileHandlerController.localFileUploadDelete);
-router.get('/', _middlewares_1.authenticate, _controllers_1.localFileHandlerController.fetchLocalFileList);
+router.get('/', _controllers_1.localFileHandlerController.fetchLocalFileList);
 exports.default = router;
 //# sourceMappingURL=localFileHandler.route.js.map

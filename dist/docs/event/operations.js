@@ -37,8 +37,6 @@
  *    summary: Get a specific event by ID
  *    description: Fetch all events if no ID is provided, otherwise fetch a specific event
  *    tags: [Events]
- *    security:
- *      - bearerAuth: []
  *    parameters:
  *      - in: path
  *        name: eventId

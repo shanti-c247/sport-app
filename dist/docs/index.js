@@ -25,17 +25,23 @@ const initializeImports = () => __awaiter(void 0, void 0, void 0, function* () {
         _utils_1.commonHandler.conditionalImport('src/docs/auth', '../docs/auth/responses'),
         _utils_1.commonHandler.conditionalImport('src/docs/event', '../docs/event/schemas'),
         _utils_1.commonHandler.conditionalImport('src/docs/event', '../docs/event/responses'),
+        _utils_1.commonHandler.conditionalImport('src/docs/template', '../docs/template/schemas'),
+        _utils_1.commonHandler.conditionalImport('src/docs/template', '../docs/template/responses'),
+        _utils_1.commonHandler.conditionalImport('src/docs/templateB', '../docs/templateB/schemas'),
+        _utils_1.commonHandler.conditionalImport('src/docs/templateB', '../docs/templateB/responses'),
     ]);
-    const [userSchemas, userResponses, localFileHandlerSchemas, localFileHandlerResponses, authSchemas, authResponses, eventSchemas, eventResponses,] = imports;
+    const [userSchemas, userResponses, localFileHandlerSchemas, localFileHandlerResponses, authSchemas, authResponses, eventSchemas, eventResponses, templateSchemas, templateResponses, templateBSchemas, templateBResponses,] = imports;
     const swaggerOptions = _utils_1.swaggerHandler.createSwaggerConfig({
         routes: [
             _constants_1.userVariables.USER_MODULE_SWAGGER_OPERATIONS_PATH,
             _constants_1.localFileHandlerVariables.LOCALFILEHANDLER_MODULE_SWAGGER_OPERATIONS_PATH,
             _constants_1.userVariables.AUTH_MODULE_SWAGGER_OPERATIONS_PATH,
             _constants_1.eventVariables.EVENT_MODULE_SWAGGER_OPERATIONS_PATH,
+            _constants_1.templateVariables.TEAMPLATE_MODULE_SWAGGER_OPERATIONS_PATH,
+            _constants_1.templateBVariables.TEAMPLATE_B_MODULE_SWAGGER_OPERATIONS_PATH
         ],
-        additionalSchemas: Object.assign(Object.assign(Object.assign(Object.assign({}, userSchemas.default), localFileHandlerSchemas.default), authSchemas.default), eventSchemas.default),
-        additionalResponses: Object.assign(Object.assign(Object.assign(Object.assign({}, userResponses.default), localFileHandlerResponses.default), authResponses.default), eventResponses.default),
+        additionalSchemas: Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, userSchemas.default), localFileHandlerSchemas.default), authSchemas.default), eventSchemas.default), templateSchemas.default), templateBSchemas.default),
+        additionalResponses: Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, userResponses.default), localFileHandlerResponses.default), authResponses.default), eventResponses.default), templateResponses.default), templateBResponses.default),
     });
     return swaggerOptions;
 });

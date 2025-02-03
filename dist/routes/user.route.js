@@ -12,7 +12,7 @@ const _validations_1 = require("@validations");
 const express_1 = require("express");
 const router = (0, express_1.Router)();
 router.post('/', _middlewares_1.authenticate, (0, _middlewares_1.authorize)(_enums_1.Role.Admin), (0, _middlewares_1.validate)(_validations_1.userValidations.createUserSchema), _controllers_1.userController.createUser);
-router.get('/:userId?', _middlewares_1.authenticate, (0, _middlewares_1.authorize)(_enums_1.Role.Admin), _controllers_1.userController.getUsers);
+router.get('/:userId?', _controllers_1.userController.getUsers);
 router.delete('/:userId', _middlewares_1.authenticate, (0, _middlewares_1.authorize)(_enums_1.Role.Admin), _controllers_1.userController.deleteUser);
 router.put('/:userId', _middlewares_1.authenticate, (0, _middlewares_1.authorize)(_enums_1.Role.Admin), (0, _middlewares_1.validate)(_validations_1.userValidations.updateUserSchema), _controllers_1.userController.updateUser);
 exports.default = router;

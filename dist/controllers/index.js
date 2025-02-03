@@ -33,10 +33,12 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.eventController = exports.authController = exports.localFileHandlerController = exports.userController = void 0;
+exports.templateBController = exports.templateController = exports.eventController = exports.authController = exports.localFileHandlerController = exports.userController = void 0;
 // Auto-generated imports
 exports.userController = __importStar(require("./user.controller"));
 exports.localFileHandlerController = __importStar(require("./localFileHandler.controller"));
 exports.authController = __importStar(require("./auth.controller"));
 exports.eventController = __importStar(require("./event.controller"));
+exports.templateController = __importStar(require("./template.controller"));
+exports.templateBController = __importStar(require("./templateB.controller"));
 //# sourceMappingURL=index.js.map

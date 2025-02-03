@@ -13,35 +13,41 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.uploadFileLocal = void 0;
-const node_fs_1 = __importDefault(require("node:fs"));
+const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const _utils_1 = require("@utils");
-// Third-party modules
 const multer_1 = __importDefault(require("multer"));
 const _constants_1 = require("@constants");
 const _utils_2 = require("@utils");
+/**
+ * Ensure the directory exists in /tmp.
+ */
+const ensureDirectoryExists = (dirPath) => {
+    console.log('dirPath', dirPath);
+    if (!fs_1.default.existsSync(dirPath)) {
+        fs_1.default.mkdirSync(dirPath, { recursive: true });
+    }
+};
 /**
  * Local file storage configuration.
  */
 const localFileStorage = multer_1.default.diskStorage({
     destination: (_req, _file, cb) => {
-        // File upload path
-        const destinationPath = `${_constants_1.fileHandlerVariables.UPLOAD_DIR}/${_constants_1.fileHandlerVariables.UPLOAD_FOLDER}/`;
+        // Create a path in /tmp for uploads
+        const destinationPath = path_1.default.join('tmp', 'uploads', 'documents');
+        // Ensure the directory exists in /tmp
+        ensureDirectoryExists(destinationPath);
+        // Set the destination for multer to write the file
         cb(null, destinationPath);
     },
     filename: (_req, file, cb) => {
-        //Upload file name
+        // Generate a unique filename based on timestamp
         const fileName = `${Date.now().toString()}-${file.originalname}`;
         cb(null, fileName);
     },
 });
 /**
  * Middleware to handle local file upload.
- * @param {Request} req - Express request object.
- * @param {Response} res - Express response object.
- * @param {NextFunction} next - Express next function.
- * @returns {void}
- * @throws {ErrorHandler} An error handler with a 400 status code if the file upload fails.
  */
 const localUploadMiddleware = (0, multer_1.default)({
     storage: localFileStorage,
@@ -63,21 +69,14 @@ const localUploadMiddleware = (0, multer_1.default)({
         maxCount: _constants_1.fileHandlerVariables.FILE_UPLOAD_LIMIT,
     },
 ]);
-const ensureDirectoryExists = (dirPath) => {
-    if (!node_fs_1.default.existsSync(dirPath)) {
-        node_fs_1.default.mkdirSync(dirPath, { recursive: true });
-    }
-};
 /**
  * Handles local file uploading.
- * @param {Request} req - Express request object.
- * @param {Response} res - Express response object.
- * @param {NextFunction} next - Express next function.
- * @throws {ErrorHandler} An error handler with a 400 status code if the file upload fails.
  */
 const uploadFileLocal = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const destinationPath = path_1.default.join(__dirname, `../../${_constants_1.fileHandlerVariables.UPLOAD_DIR}/${_constants_1.fileHandlerVariables.UPLOAD_FOLDER}/`);
+        // Ensure directory exists inside /tmp
+        const destinationPath = path_1.default.join('tmp', 'uploads', 'documents');
+        console.log(destinationPath, '---------');
         yield ensureDirectoryExists(destinationPath);
         const convertedFileSize = yield _utils_1.commonHandler.convertFileSize(_constants_1.fileHandlerVariables.FILE_SIZE, 'Byte', 'MB');
         localUploadMiddleware(req, res, (error) => {

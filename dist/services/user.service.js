@@ -41,7 +41,6 @@ const createUser = (name, email, dob, description, picture) => __awaiter(void 0,
         description,
         picture
     });
-    console.log(newUser);
     const createdUser = yield newUser.save();
     return {
         status: _constants_1.CREATED,
@@ -84,6 +83,7 @@ orderBy) => __awaiter(void 0, void 0, void 0, function* () {
     const filter = {
         status: _enums_1.UserStatus.Active,
         role: _enums_1.Role.User,
+        isDeleted: false
     };
     if (search) {
         // biome-ignore lint/complexity/useLiteralKeys: <explanation>
@@ -91,7 +91,11 @@ orderBy) => __awaiter(void 0, void 0, void 0, function* () {
     }
     const users = yield _services_1.userCommonService.getAllUsers(limit, offset, filter, sort);
     // Fetch total count for pagination metadata
-    const total = yield _models_1.User.countDocuments({ role: _enums_1.Role.User });
+    const total = yield _models_1.User.countDocuments({
+        role: _enums_1.Role.User,
+        status: _enums_1.UserStatus.Active,
+        isDeleted: false
+    });
     return {
         status: _constants_1.OK,
         success: true,

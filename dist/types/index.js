@@ -20,4 +20,6 @@ __exportStar(require("./user.type"), exports);
 __exportStar(require("./common.type"), exports);
 __exportStar(require("./customError.type"), exports);
 __exportStar(require("./event.type"), exports);
+__exportStar(require("./template.type"), exports);
+__exportStar(require("./templateB.type"), exports);
 //# sourceMappingURL=index.js.map

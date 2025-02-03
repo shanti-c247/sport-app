@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.eventVariables = exports.authVariables = exports.commonVariables = exports.fileHandlerVariables = exports.localFileHandlerVariables = exports.emailVariables = exports.userVariables = void 0;
+exports.templateBVariables = exports.templateVariables = exports.eventVariables = exports.authVariables = exports.commonVariables = exports.fileHandlerVariables = exports.localFileHandlerVariables = exports.emailVariables = exports.userVariables = void 0;
 // Auto-generated imports
 exports.userVariables = __importStar(require("./user.variables"));
 exports.emailVariables = __importStar(require("./email.variables"));
@@ -42,4 +42,6 @@ exports.fileHandlerVariables = __importStar(require("./fileHandler.variables"));
 exports.commonVariables = __importStar(require("./common.variables"));
 exports.authVariables = __importStar(require("./auth.variables"));
 exports.eventVariables = __importStar(require("./event.variables"));
+exports.templateVariables = __importStar(require("./teamplate.variables"));
+exports.templateBVariables = __importStar(require("./teamplateB.variables"));
 //# sourceMappingURL=index.js.map

@@ -37,8 +37,6 @@
  *    summary: Get a specific user by ID
  *    description: Fetch all users if no ID is provided, otherwise fetch a specific user
  *    tags: [Users]
- *    security:
- *      - bearerAuth: []
  *    parameters:
  *      - in: path
  *        name: userId
@@ -138,8 +136,6 @@
  *    summary: Get all users
  *    description: Fetch a list of users with pagination using `page` and `limit` query parameters, along with optional search and sort parameters.
  *    tags: [Users]
- *    security:
- *      - bearerAuth: []
  *    parameters:
  *      - in: query
  *        name: page

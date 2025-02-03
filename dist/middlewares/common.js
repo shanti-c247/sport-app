@@ -46,7 +46,6 @@ const authenticate = (req, _res, next) => __awaiter(void 0, void 0, void 0, func
         }
         catch (error) {
             const err = error;
-            console.log(err.message, `error`);
             const errorMessage = err.name === _constants_1.commonVariables.TOKEN_EXPIRED_ERROR
                 ? _constants_1.commonMessages.SESSION_TIMEOUT
                 : _constants_1.commonMessages.INVALID_TOKEN;

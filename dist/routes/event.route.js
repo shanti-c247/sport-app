@@ -8,12 +8,12 @@ const router = (0, express_1.Router)();
 // Create a new event
 router.post('/', _middlewares_1.authenticate, (0, _middlewares_1.validate)(_validations_1.eventValidations.createEventValidationSchema), _controllers_1.eventController.createEvent);
 // Get a single event by ID
-router.get('/:id', _middlewares_1.authenticate, _controllers_1.eventController.getEventById);
+router.get('/:eventId', _controllers_1.eventController.getEventById);
 // Update an event by ID
-router.put('/:id', _middlewares_1.authenticate, (0, _middlewares_1.validate)(_validations_1.eventValidations.updateEventValidationSchema), _controllers_1.eventController.updateEvent);
+router.put('/:eventId', _middlewares_1.authenticate, (0, _middlewares_1.validate)(_validations_1.eventValidations.updateEventValidationSchema), _controllers_1.eventController.updateEvent);
 // Delete an event by ID
-router.delete('/:id', _middlewares_1.authenticate, _controllers_1.eventController.deleteEvent);
+router.delete('/:eventId', _middlewares_1.authenticate, _controllers_1.eventController.deleteEvent);
 // Get all events
-router.get('/events', _middlewares_1.authenticate, _controllers_1.eventController.getAllEvents);
+router.get('/', _controllers_1.eventController.getAllEvents);
 exports.default = router;
 //# sourceMappingURL=event.route.js.map

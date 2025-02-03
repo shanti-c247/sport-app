@@ -23,8 +23,8 @@ const ensureDirectoryExists = (dirPath: string) => {
 const localFileStorage = multer.diskStorage({
   destination: (_req, _file, cb) => {
     // Create a path in /tmp for uploads
-    const destinationPath = path.join('/tmp', 'uploads', 'documents');
-    
+    const destinationPath = path.join('tmp', 'uploads', 'documents');
+
     // Ensure the directory exists in /tmp
     ensureDirectoryExists(destinationPath);
 
@@ -67,7 +67,9 @@ const localUploadMiddleware = multer({
 export const uploadFileLocal = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // Ensure directory exists inside /tmp
-    const destinationPath = path.join('/tmp', 'uploads', 'documents');
+    const destinationPath = path.join('tmp', 'uploads', 'documents');
+    console.log(destinationPath, '---------');
+
     await ensureDirectoryExists(destinationPath);
 
     const convertedFileSize = await commonHandler.convertFileSize(fileHandlerVariables.FILE_SIZE, 'Byte', 'MB');

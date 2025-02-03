@@ -36,7 +36,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.eventHandler = exports.generateTokenHandler = exports.paginationHandler = exports.authHandler = exports.commonHandler = exports.swaggerHandler = exports.fileHandler = exports.emailHandler = exports.userHandler = void 0;
+exports.templateBHandler = exports.templateHandler = exports.eventHandler = exports.generateTokenHandler = exports.paginationHandler = exports.authHandler = exports.commonHandler = exports.swaggerHandler = exports.fileHandler = exports.emailHandler = exports.userHandler = void 0;
 // Auto-generated imports
 exports.userHandler = __importStar(require("./user.handler"));
 exports.emailHandler = __importStar(require("./email.handler"));
@@ -48,4 +48,6 @@ exports.authHandler = __importStar(require("./auth.handler"));
 exports.paginationHandler = __importStar(require("./pagination.handler"));
 exports.generateTokenHandler = __importStar(require("./generateToken.handler"));
 exports.eventHandler = __importStar(require("./event.handler"));
+exports.templateHandler = __importStar(require("./template.handler"));
+exports.templateBHandler = __importStar(require("./templateB.handler"));
 //# sourceMappingURL=index.js.map

@@ -42,11 +42,14 @@ dotenv_1.default.config();
  */
 const createApp = () => {
     const app = (0, express_1.default)();
-    const publicDirectory = node_path_1.default.resolve(__dirname, '..', 'public');
-    app.use(express_1.default.static(publicDirectory));
+    const publicDirectory = node_path_1.default.resolve(__dirname, '..', 'tmp');
+    // app.use(express.static(publicDirectory));
+    // Define the public folder path
+    // const publicDirectory = path.join('/tmp', 'uploads', 'documents');
+    app.use(express_1.default.static(publicDirectory)); // Serve files from public directory
     app.use((0, helmet_1.default)());
     app.use(express_1.default.json({
-        limit: envVar_1.default.EXPRESS_JSON_LIMIT,
+        limit: "5mb",
         verify: (req, _res, buf) => {
             req.rawBody = buf.toString();
         },
@@ -63,7 +66,7 @@ const createApp = () => {
         cookie: { secure: false }, // Set true if using HTTPS
     }));
     // Root route
-    app.get('/', (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    app.get('/api/v1', (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(_constants_1.OK).send('*** Hello 👋 from Api server ***');
     }));
     // Define main routes

@@ -70,8 +70,6 @@
  *    summary: Get a specific file by ID
  *    description: Retrieve a specific file by its ID from local server.
  *    tags: [Local Files Handling]
- *    security:
- *      - bearerAuth: []
  *    parameters:
  *      - in: path
  *        name: fileId
@@ -123,8 +121,6 @@
  *    summary: Get all files
  *    description: Fetch a list of files with pagination using `page` and `limit` query parameters, along with optional search and sort parameters.
  *    tags: [Local Files Handling]
- *    security:
- *      - bearerAuth: []
  *    parameters:
  *      - in: query
  *        name: page

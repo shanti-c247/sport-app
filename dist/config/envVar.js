@@ -15,20 +15,7 @@ const requiredEnvVars = [
     'JWT_SECRET',
     'AUTH_COOKIE_NAME',
     'MONGODB_URI',
-    'CORS_ORIGIN',
-    'EXPRESS_JSON_LIMIT',
-    'SMTP_MAIL_SERVICE',
-    'SMTP_SENDER_EMAIL',
-    'SMTP_SENDER_PASSWORD',
-    'SMTP_HOST',
-    'SMTP_PORT',
-    'SMTP_IS_SECURE',
-    'TWILIO_ACCOUNT_SID',
-    'TWILIO_AUTH_TOKEN',
-    'TWILIO_SERVICE_SID',
-    'AUTH_TOKEN_APP_NAME',
-    'STRIPE_SECRET_KEY',
-    'STRIPE_WEBHOOK_SECRET'
+    'CORS_ORIGIN'
 ];
 // Object to hold exported environment variables
 const env = {};

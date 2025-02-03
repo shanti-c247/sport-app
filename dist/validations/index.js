@@ -33,9 +33,11 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.eventValidations = exports.authValidations = exports.userValidations = void 0;
+exports.templateBValidations = exports.templateValidations = exports.eventValidations = exports.authValidations = exports.userValidations = void 0;
 // Auto-generated imports
 exports.userValidations = __importStar(require("./user.validation"));
 exports.authValidations = __importStar(require("./auth.validation"));
 exports.eventValidations = __importStar(require("./event.validation"));
+exports.templateValidations = __importStar(require("./template.validation"));
+exports.templateBValidations = __importStar(require("./templateB.validation"));
 //# sourceMappingURL=index.js.map

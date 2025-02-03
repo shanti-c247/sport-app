@@ -33,11 +33,13 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.eventMessages = exports.commonMessages = exports.fileHandlerMessages = exports.emailMessages = exports.userMessages = void 0;
+exports.templateBMessages = exports.templateMessages = exports.eventMessages = exports.commonMessages = exports.fileHandlerMessages = exports.emailMessages = exports.userMessages = void 0;
 // Auto-generated imports
 exports.userMessages = __importStar(require("./user.messages"));
 exports.emailMessages = __importStar(require("./email.messages"));
 exports.fileHandlerMessages = __importStar(require("./fileHandler.messages"));
 exports.commonMessages = __importStar(require("./common.messages"));
 exports.eventMessages = __importStar(require("./event.messages"));
+exports.templateMessages = __importStar(require("./template.messages"));
+exports.templateBMessages = __importStar(require("./templateB.messages"));
 //# sourceMappingURL=index.js.map

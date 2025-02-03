@@ -33,11 +33,13 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.eventService = exports.authService = exports.localFileHandlerService = exports.userCommonService = exports.userService = void 0;
+exports.templateBService = exports.templateService = exports.eventService = exports.authService = exports.localFileHandlerService = exports.userCommonService = exports.userService = void 0;
 // Auto-generated imports
 exports.userService = __importStar(require("./user.service"));
 exports.userCommonService = __importStar(require("./userCommon.service"));
 exports.localFileHandlerService = __importStar(require("./localFileHandler.service"));
 exports.authService = __importStar(require("./auth.service"));
 exports.eventService = __importStar(require("./event.service"));
+exports.templateService = __importStar(require("./template.service"));
+exports.templateBService = __importStar(require("./templateB.service"));
 //# sourceMappingURL=index.js.map

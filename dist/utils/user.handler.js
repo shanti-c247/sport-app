@@ -1,24 +1,13 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.convertToDate = exports.userRandomData = exports.sendSetPasswordEmail = exports.generateSetPasswordLink = exports.generateHashedToken = void 0;
+exports.convertToDate = exports.userRandomData = exports.generateSetPasswordLink = exports.generateHashedToken = void 0;
 //Third-party modules
 const node_crypto_1 = __importDefault(require("node:crypto"));
 //Constants
 const _constants_1 = require("@constants");
-//Utils
-const _utils_1 = require("@utils");
 //Enums
 const _enums_1 = require("@enums");
 //Third-party modules
@@ -49,12 +38,11 @@ exports.generateSetPasswordLink = generateSetPasswordLink;
  * @param {IUser} user - The user object containing user details.
  * @returns {Promise<boolean>} - Returns a promise that resolves to true if the email was sent successfully, otherwise false.
  */
-const sendSetPasswordEmail = (email, link, user) => __awaiter(void 0, void 0, void 0, function* () {
-    const message = yield (0, _constants_1.setPasswordTemplate)(link, user);
-    const emailResult = yield _utils_1.emailHandler.sendEmail(email, _constants_1.commonMessages.SUBJECT_SET_PASSWORD, message);
-    return emailResult.success;
-});
-exports.sendSetPasswordEmail = sendSetPasswordEmail;
+// export const sendSetPasswordEmail = async (email: string, link: string, user: IUser): Promise<boolean> => {
+//   const message = await setPasswordTemplate(link, user);
+//   const emailResult = await emailHandler.sendEmail(email, commonMessages.SUBJECT_SET_PASSWORD, message);
+//   return emailResult.success;
+// };
 /**
  * Generates random data for user related APIs.
  * @param {string} type The type of random data to generate. Supported types are:

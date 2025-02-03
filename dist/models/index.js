@@ -18,4 +18,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./user.model"), exports);
 __exportStar(require("./file.model"), exports);
 __exportStar(require("./event.model"), exports);
+__exportStar(require("./teamplate.model"), exports);
+__exportStar(require("./tamplateB.model"), exports);
 //# sourceMappingURL=index.js.map
