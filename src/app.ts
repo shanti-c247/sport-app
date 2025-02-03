@@ -30,12 +30,13 @@ dotenv.config();
 
 const createApp = () => {
   const app = express();
-  const publicDirectory = path.resolve(__dirname, '..', 'tmp');
+  // const publicDirectory = path.resolve(__dirname, '..', 'tmp');
   // app.use(express.static(publicDirectory));
   // Define the public folder path
   // const publicDirectory = path.join('/tmp', 'uploads', 'documents');
 
-  app.use(express.static(publicDirectory)); // Serve files from public directory
+  // app.use(express.static(publicDirectory)); // Serve files from public directory
+  app.use('/uploads', express.static(path.join(__dirname, 'tmp', 'uploads', 'documents')));
 
   app.use(helmet());
   app.use(
