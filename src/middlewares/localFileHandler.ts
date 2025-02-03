@@ -1,24 +1,38 @@
-import fs from 'node:fs';
+import fs from 'fs';
 import path from 'path';
 import { commonHandler } from '@utils';
 import type { NextFunction, Request, Response } from 'express';
-// Third-party modules
 import multer from 'multer';
 
 import { fileHandlerMessages, fileHandlerVariables } from '@constants';
 import { ErrorHandler, catchHandler } from '@utils';
 
 /**
+ * Ensure the directory exists in /tmp.
+ */
+const ensureDirectoryExists = (dirPath: string) => {
+  console.log('dirPath', dirPath);
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+};
+
+/**
  * Local file storage configuration.
  */
 const localFileStorage = multer.diskStorage({
   destination: (_req, _file, cb) => {
-    // File upload path
-    const destinationPath = `${fileHandlerVariables.UPLOAD_DIR}/${fileHandlerVariables.UPLOAD_FOLDER}/`;
+    // Create a path in /tmp for uploads
+    const destinationPath = path.join('/tmp', 'uploads', 'documents');
+    
+    // Ensure the directory exists in /tmp
+    ensureDirectoryExists(destinationPath);
+
+    // Set the destination for multer to write the file
     cb(null, destinationPath);
   },
   filename: (_req, file, cb) => {
-    //Upload file name
+    // Generate a unique filename based on timestamp
     const fileName = `${Date.now().toString()}-${file.originalname}`;
     cb(null, fileName);
   },
@@ -26,11 +40,6 @@ const localFileStorage = multer.diskStorage({
 
 /**
  * Middleware to handle local file upload.
- * @param {Request} req - Express request object.
- * @param {Response} res - Express response object.
- * @param {NextFunction} next - Express next function.
- * @returns {void}
- * @throws {ErrorHandler} An error handler with a 400 status code if the file upload fails.
  */
 const localUploadMiddleware = multer({
   storage: localFileStorage,
@@ -52,30 +61,17 @@ const localUploadMiddleware = multer({
   },
 ]);
 
-const ensureDirectoryExists = (dirPath: string) => {
-  console.log('dirPath', dirPath);
-  
-  if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true });
-  }
-};
-
 /**
  * Handles local file uploading.
- * @param {Request} req - Express request object.
- * @param {Response} res - Express response object.
- * @param {NextFunction} next - Express next function.
- * @throws {ErrorHandler} An error handler with a 400 status code if the file upload fails.
  */
 export const uploadFileLocal = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    // const destinationPath = path.join(
-    //   __dirname,
-    //   `../../${fileHandlerVariables.UPLOAD_DIR}/${fileHandlerVariables.UPLOAD_FOLDER}/`,
-    // );
+    // Ensure directory exists inside /tmp
     const destinationPath = path.join('/tmp', 'uploads', 'documents');
     await ensureDirectoryExists(destinationPath);
+
     const convertedFileSize = await commonHandler.convertFileSize(fileHandlerVariables.FILE_SIZE, 'Byte', 'MB');
+
     localUploadMiddleware(req, res, (error) => {
       if (error) {
         if (error.code === fileHandlerVariables.LIMIT_FILE_SIZE_ERROR_CODE) {
