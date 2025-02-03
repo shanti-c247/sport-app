@@ -67,7 +67,7 @@ const localUploadMiddleware = multer({
 export const uploadFileLocal = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // Ensure directory exists inside /tmp
-    const destinationPath = path.join('/tmp', 'uploads', 'documents');
+    const destinationPath = path.join('tmp', 'uploads', 'documents');
     console.log(destinationPath, '---------');
 
     await ensureDirectoryExists(destinationPath);
