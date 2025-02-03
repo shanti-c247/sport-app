@@ -53,6 +53,8 @@ const localUploadMiddleware = multer({
 ]);
 
 const ensureDirectoryExists = (dirPath: string) => {
+  console.log('dirPath', dirPath);
+  
   if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath, { recursive: true });
   }
