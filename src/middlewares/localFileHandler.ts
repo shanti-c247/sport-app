@@ -8,7 +8,7 @@ import { fileHandlerMessages, fileHandlerVariables } from '@constants';
 import { ErrorHandler, catchHandler } from '@utils';
 
 /**
- * Ensure the directory exists in /public/uploads (public folder in your project).
+ * Ensure the directory exists in /tmp.
  */
 const ensureDirectoryExists = (dirPath: string) => {
   console.log('dirPath', dirPath);
@@ -22,10 +22,10 @@ const ensureDirectoryExists = (dirPath: string) => {
  */
 const localFileStorage = multer.diskStorage({
   destination: (_req, _file, cb) => {
-    // Set the destination to the public/uploads folder
-    const destinationPath = path.join(__dirname, 'public', 'uploads', 'documents');
+    // Create a path in /tmp for uploads
+    const destinationPath = path.join('/tmp', 'uploads', 'documents');
     
-    // Ensure the directory exists in the public folder
+    // Ensure the directory exists in /tmp
     ensureDirectoryExists(destinationPath);
 
     // Set the destination for multer to write the file
@@ -66,8 +66,8 @@ const localUploadMiddleware = multer({
  */
 export const uploadFileLocal = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    // Ensure the public/uploads/documents directory exists
-    const destinationPath = path.join(__dirname, 'public', 'uploads', 'documents');
+    // Ensure directory exists inside /tmp
+    const destinationPath = path.join('/tmp', 'uploads', 'documents');
     await ensureDirectoryExists(destinationPath);
 
     const convertedFileSize = await commonHandler.convertFileSize(fileHandlerVariables.FILE_SIZE, 'Byte', 'MB');

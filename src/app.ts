@@ -32,9 +32,10 @@ const createApp = () => {
   const app = express();
   // const publicDirectory = path.resolve(__dirname, '..', 'public');
   // app.use(express.static(publicDirectory));
- // Define the public folder path
- const publicDirectory = path.join(__dirname, '..', 'public');
- app.use(express.static(publicDirectory)); // Serve files from public directory
+  // Define the public folder path
+  const publicDirectory = path.join('/tmp', 'uploads', 'documents');
+
+  app.use(express.static(publicDirectory)); // Serve files from public directory
 
   app.use(helmet());
   app.use(
