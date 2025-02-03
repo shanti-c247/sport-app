@@ -69,10 +69,11 @@ const ensureDirectoryExists = (dirPath: string) => {
  */
 export const uploadFileLocal = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const destinationPath = path.join(
-      __dirname,
-      `../../${fileHandlerVariables.UPLOAD_DIR}/${fileHandlerVariables.UPLOAD_FOLDER}/`,
-    );
+    // const destinationPath = path.join(
+    //   __dirname,
+    //   `../../${fileHandlerVariables.UPLOAD_DIR}/${fileHandlerVariables.UPLOAD_FOLDER}/`,
+    // );
+    const destinationPath = path.join('/tmp', 'uploads', 'documents');
     await ensureDirectoryExists(destinationPath);
     const convertedFileSize = await commonHandler.convertFileSize(fileHandlerVariables.FILE_SIZE, 'Byte', 'MB');
     localUploadMiddleware(req, res, (error) => {
