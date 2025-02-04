@@ -3,7 +3,8 @@ import path from 'path';
 import { commonHandler } from '@utils';
 import type { NextFunction, Request, Response } from 'express';
 import multer from 'multer';
-
+import { getStore } from "@netlify/blobs";
+// import { redirect } from "@netlify/functions";
 import { fileHandlerMessages, fileHandlerVariables } from '@constants';
 import { ErrorHandler, catchHandler } from '@utils';
 
@@ -110,3 +111,49 @@ export const uploadFileLocal = async (req: Request, res: Response, next: NextFun
     catchHandler(error, next);
   }
 };
+
+
+export async function uploadEndpoint({ request }: any) {
+  console.log(request,'--request');
+  
+  // Get form data from the request (assumes that `request` is the incoming
+  // request object)
+  const formData = await request.formData();
+  // Get the file from the form data
+  const fileUpload = formData.get("fileUpload") as File;
+  // Load the Netlify Blobs store called `UserUpload`
+  const userUploadStore = getStore({ name: "UserUpload", consistency: "strong" });
+  // Set the file in the store. Replace `<key>` with a unique key for the file.
+  const fileName = `${Date.now().toString()}.png`;
+  await userUploadStore.set(fileName, fileUpload);
+  // Redirect to a new page
+  const userUploadBlob = await userUploadStore.get(fileName, {
+    type: "stream",
+  });
+  console.log(userUploadBlob,'--userUploadBlob');
+  
+  // Make sure you throw a 404 if the blob is not found.
+  if (!userUploadBlob) {
+    return new Response("Upload not found", { status: 404 });
+  }
+  // Return the blob
+  return new Response(userUploadBlob);
+  return 'success';
+}
+
+
+// export async function uploadEndpoint() {
+//   // Load the Netlify Blobs store called `UserUpload`
+//   const userUploadStore = getStore({ name: "UserUpload", consistency: "strong" });
+//   // Get the blob from the store. Replace `<key>` with the unique key used when
+//   // uploading.
+//   const userUploadBlob = await userUploadStore.get("<key>", {
+//     type: "stream",
+//   });
+//   // Make sure you throw a 404 if the blob is not found.
+//   if (!userUploadBlob) {
+//     return new Response("Upload not found", { status: 404 });
+//   }
+//   // Return the blob
+//   return new Response(userUploadBlob);
+// }
