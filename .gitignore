@@ -140,5 +140,5 @@ dist
 .npmrc
 # Local Netlify folder
 .netlify
-netlify
+# netlify
 netlify.toml
