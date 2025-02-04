@@ -17,15 +17,17 @@ import type { NextFunction, Request, Response } from 'express';
  */
 export const localFileUpload = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
+    const filesParse: any = []
     const user = req.user;
     if (!user) {
       return next(new ErrorHandler(commonMessages.USER_NOT_FOUND, UNAUTHORIZE, null));
     }
-    if (!req?.files) {
+    if (!req?.body.uploadfFile) {
       next(new ErrorHandler(fileHandlerMessages.SELECTED_FILE_ERROR, NOT_FOUND, null));
     }
-    const filesParse = JSON.parse(JSON.stringify(req.files));
-    const response = await localFileHandlerService.localFileUpload(user, filesParse);
+    // const filesParse = JSON.parse(JSON.stringify(req.files));
+    filesParse.push(req.body.uploadfFile);
+    const response = await localFileHandlerService.localFileUpload(user, { fileUpload: filesParse });
     const { success, message, status, data } = response;
     if (success) {
       responseHandler(res, message, status, data);
@@ -96,7 +98,7 @@ export const fetchLocalFile = async (req: Request, res: Response, next: NextFunc
  */
 export const fetchLocalFileList = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { page, limit, search, sortBy,orderBy } = req.query;
+    const { page, limit, search, sortBy, orderBy } = req.query;
     const { status, success, message, data } = await localFileHandlerService.getFiles(
       Number(page),
       Number(limit),

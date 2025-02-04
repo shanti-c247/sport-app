@@ -18,5 +18,7 @@ export interface ITemplateB extends Document {
   slider: IImage[];
   bio: IBio;
   event: IEvent[];
+  isDeleted: boolean;
+
 }
 

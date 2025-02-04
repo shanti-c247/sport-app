@@ -17,9 +17,7 @@ import { templateBService } from '@services';
  * @param {NextFunction} next
  */
 export const createTemplateB = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-    try {
-        console.log(req.body,'--req.body');
-        
+    try {        
         const { 
             slider,
             bio,
@@ -46,8 +44,8 @@ export const createTemplateB = async (req: Request, res: Response, next: NextFun
  */
 export const deleteTemplateB = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const { templateBId } = req.params;
-        const { status, success, message, data } = await templateBService.deleteTemplateB(templateBId);
+        const { templateId } = req.params;
+        const { status, success, message, data } = await templateBService.deleteTemplateB(templateId);
 
         if (success) {
             responseHandler(res, message, status, data);
@@ -67,11 +65,11 @@ export const deleteTemplateB = async (req: Request, res: Response, next: NextFun
  */
 export const updateTemplateB = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const { templateBId } = req.params;
+        const { templateId } = req.params;
         const { slider,
             bio,
             event, } = req.body;
-        const { status, success, message, data } = await templateBService.updateTemplateB(templateBId, slider,
+        const { status, success, message, data } = await templateBService.updateTemplateB(templateId, slider,
             bio,
             event,);
 
@@ -87,17 +85,17 @@ export const updateTemplateB = async (req: Request, res: Response, next: NextFun
 
 /**
  * Handles retrieving templateBs.
- * If a templateBId is provided, fetch that specific templateB; otherwise, fetch all templateBs.
+ * If a templateId is provided, fetch that specific templateB; otherwise, fetch all templateBs.
  * @param {Request} req
  * @param {Response} res
  * @param {NextFunction} next
  */
 export const getTemplateBs = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const { templateBId } = req.params;
+        const { templateId } = req.params;
         const { page, limit, search, sortBy, orderBy } = req.query;
         const { status, success, message, data } = await templateBService.getTemplateBs(
-            templateBId,
+            templateId,
             Number(page),
             Number(limit),
             search,

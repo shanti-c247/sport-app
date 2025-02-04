@@ -7,7 +7,6 @@ import multer from 'multer';
 
 import { fileHandlerMessages, fileHandlerVariables } from '@constants';
 import { ErrorHandler, catchHandler } from '@utils';
-const tmpDir = '/tmp/uploads';
 
 /**
  * Local file storage configuration.
@@ -15,8 +14,7 @@ const tmpDir = '/tmp/uploads';
 const localFileStorage = multer.diskStorage({
   destination: (_req, _file, cb) => {
     // File upload path
-    // const destinationPath = `${fileHandlerVariables.UPLOAD_DIR}/${fileHandlerVariables.UPLOAD_FOLDER}/`;
-    const destinationPath = path.join(tmpDir);
+    const destinationPath = `${fileHandlerVariables.UPLOAD_DIR}/${fileHandlerVariables.UPLOAD_FOLDER}/`;
     cb(null, destinationPath);
   },
   filename: (_req, file, cb) => {
@@ -69,12 +67,10 @@ const ensureDirectoryExists = (dirPath: string) => {
  */
 export const uploadFileLocal = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    // const destinationPath = path.join(
-    //   __dirname,
-    //   `../../${fileHandlerVariables.UPLOAD_DIR}/${fileHandlerVariables.UPLOAD_FOLDER}/`,
-    // );
-    // Define the path where the file will be temporarily stored
-    const destinationPath = path.join(tmpDir);
+    const destinationPath = path.join(
+      __dirname,
+      `../../${fileHandlerVariables.UPLOAD_DIR}/${fileHandlerVariables.UPLOAD_FOLDER}/`,
+    );
     await ensureDirectoryExists(destinationPath);
     const convertedFileSize = await commonHandler.convertFileSize(fileHandlerVariables.FILE_SIZE, 'Byte', 'MB');
     localUploadMiddleware(req, res, (error) => {

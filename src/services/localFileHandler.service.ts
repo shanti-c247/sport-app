@@ -123,11 +123,12 @@ export const getFilesWithPagination = async (
  * @param {Request} req Express request object
  * @returns {IApiResponse} Response containing the files and user detail or error information
  */
-export const localFileUpload = async (user: IUser, files: IFileUploadType): Promise<IApiResponse> => {
+export const localFileUpload = async (user: IUser, files: any): Promise<IApiResponse> => {
   const uploadedFiles: string[] = [];
+  const { fileUpload } = files;  
   if (files) {
-    if (files?.fileUpload) {
-      files.fileUpload.forEach((file: { path: string }) => uploadedFiles.push(file.path));
+    if (fileUpload) {
+      fileUpload.forEach((file: any) => uploadedFiles.push(file));
     }
   }
 

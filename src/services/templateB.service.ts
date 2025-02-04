@@ -49,7 +49,7 @@ export const getTemplateBs = async (
     return {
       status: template ? OK : BAD_REQUEST,
       success: Boolean(template),
-      message: template ? templateMessages.TEAMPLATE_FETCH_SUCCESS : commonMessages.USER_NOT_FOUND,
+      message: template ? templateMessages.TEAMPLATE_FETCH_SUCCESS : templateMessages.TEAMPLATE_NOT_FOUND,
       data: template || null,
     };
   }
@@ -67,7 +67,7 @@ export const getTemplateBs = async (
     sort = { [sortBy]: orderBy };
   }
   const filter: Record<string, any> = {
-    isDeleted: false
+    // isDeleted: false
   };
   if (search) {
     // biome-ignore lint/complexity/useLiteralKeys: <explanation>
