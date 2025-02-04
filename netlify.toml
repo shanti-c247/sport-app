@@ -1,3 +1,6 @@
+[build]
+  publish = "public"  # Ensure 'public' is the directory Netlify uses for static assets
+
 [functions]
   external_node_modules = ["express"]
   node_bundler = "esbuild"
