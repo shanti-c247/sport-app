@@ -15,6 +15,4 @@ const App = createApp();
  */
 connectUserDB();
 
-export const handler = serverless(App
-
-);
+export const handler = serverless(App);

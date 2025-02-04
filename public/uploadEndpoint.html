@@ -11,7 +11,9 @@
         console.log(form, 'form');
 
         const formData = new FormData(form);
-        const response = await fetch("https://sparkly-peony-393e93.netlify.app/fileUpload", {
+
+        // Use the correct URL for your Netlify function
+        const response = await fetch("https://sparkly-peony-393e93.netlify.app/.netlify/functions/uploadEndpoint", {
             method: "POST",
             body: formData,
         });
