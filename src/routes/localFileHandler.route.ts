@@ -1,7 +1,7 @@
 import express from 'express';
 
 import { localFileHandlerController } from '@controllers';
-import { authenticate, uploadEndpoint, uploadFileLocal } from '@middlewares';
+import { authenticate, uploadFileLocal } from '@middlewares';
 
 const router = express.Router();
 
@@ -11,8 +11,6 @@ router.post('/', authenticate, uploadFileLocal, localFileHandlerController.local
 router.patch('/:fileId', authenticate, uploadFileLocal, localFileHandlerController.localFileUploadUpdate);
 router.delete('/:fileId', authenticate, localFileHandlerController.localFileUploadDelete);
 router.get('/', localFileHandlerController.fetchLocalFileList);
-
-// router.post('/', authenticate, uploadEndpoint, localFileHandlerController.localFileUpload);
 
 
 export default router;

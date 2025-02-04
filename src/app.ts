@@ -2,7 +2,7 @@ import path from 'node:path';
 import env from '@config/envVar';
 import { OK } from '@constants';
 import type { ICustomError } from '@customTypes';
-import { errorMiddleware, uploadEndpoint } from '@middlewares';
+import { errorMiddleware } from '@middlewares';
 import { indexRoute, swaggerRoute } from '@routes';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -30,18 +30,12 @@ dotenv.config();
 
 const createApp = () => {
   const app = express();
-  // const publicDirectory = path.resolve(__dirname, '..', 'tmp');
-  // app.use(express.static(publicDirectory));
-  // Define the public folder path
-  // const publicDirectory = path.join('/tmp', 'uploads', 'documents');
-
-  // app.use(express.static(publicDirectory)); // Serve files from public directory
-  app.use('/uploads', express.static(path.join(__dirname, 'tmp', 'uploads', 'documents')));
-
+  const publicDirectory = path.resolve(__dirname, '..', 'public');
+  app.use(express.static(publicDirectory));
   app.use(helmet());
   app.use(
     express.json({
-      limit: "5mb",
+      limit: env.EXPRESS_JSON_LIMIT,
       verify: (req: any, _res, buf) => {
         req.rawBody = buf.toString();
       },
@@ -66,16 +60,10 @@ const createApp = () => {
   );
 
   // Root route
-  app.get('/api/v1', async (_req: express.Request, res: express.Response) => {
+  app.get('/', async (_req: express.Request, res: express.Response) => {
     res.status(OK).send('*** Hello 👋 from Api server ***');
-
   });
 
-  app.post('/api/v1', async (_req: express.Request, res: express.Response) => {
-    res.status(OK).send('*** Hello 👋 from Api server ***');
-    
-    uploadEndpoint({ request: _req });
-  });
   // Define main routes
   app.use('/api/v1', indexRoute);
 
