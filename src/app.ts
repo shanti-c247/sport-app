@@ -44,7 +44,7 @@ const createApp = () => {
 
   app.use(
     cors({
-      origin: env.CORS_ORIGIN.split(','),
+      origin: "*",
       methods: 'GET,POST,PUT,PATCH,DELETE',
     }),
   );
